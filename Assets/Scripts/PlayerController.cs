@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,10 @@ public class PlayerController : MonoBehaviour {
 
     public GameMaster game;
 
+    public bool isImmune = false;
+
+    public bool isFast = false;
+
 
 
 	private void Start()
@@ -31,22 +36,22 @@ public class PlayerController : MonoBehaviour {
         horizontalSpeed = Input.GetAxis("Horizontal");
         verticalSpeed = Input.GetAxis("Vertical");
 
-
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
         if (collision.collider.tag == "Car")
         {
-            if (collision.gameObject.GetComponent<CarController>().isRunning) {
+            if (collision.gameObject.GetComponent<CarController>().isRunning && !isImmune) {
                 game.gameOver = true;
                 Destroy(gameObject);
             }
         }
 	}
 
+   
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
 
         Vector3 movementVector = new Vector3(horizontalSpeed, 0, verticalSpeed);

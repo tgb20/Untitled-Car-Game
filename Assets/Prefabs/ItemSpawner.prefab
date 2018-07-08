@@ -52,5 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
+  - {fileID: 1239859401100192, guid: 93698b1f536fb0c4695b638ccbea5242, type: 2}
   - {fileID: 1554655987783184, guid: a0ba3af0e724c4a04bc16f079215339e, type: 2}
+  - {fileID: 1554655987783184, guid: a0ba3af0e724c4a04bc16f079215339e, type: 2}
+  - {fileID: 1554655987783184, guid: a0ba3af0e724c4a04bc16f079215339e, type: 2}
+  - {fileID: 1393579227681992, guid: 2c440af8f4b78414dbc709e758db1c09, type: 2}
   spawnTimer: 10
