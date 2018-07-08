@@ -116,6 +116,8 @@ MonoBehaviour:
   maxSpeed: 15
   jumpStrength: 6
   game: {fileID: 0}
+  isImmune: 1
+  isFast: 0
 --- !u!136 &136350734676775114
 CapsuleCollider:
   m_ObjectHideFlags: 1

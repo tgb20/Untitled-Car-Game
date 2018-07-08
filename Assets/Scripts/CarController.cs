@@ -40,7 +40,13 @@ public class CarController : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-        if(isRunning && collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Player"){
+        var playerController = collision.gameObject.GetComponent<PlayerController>();
+
+        if (isRunning && collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Player"){
+            BreakDown();
+        }
+        else if (playerController != null && playerController.isImmune == true)
+        {
             BreakDown();
         }
 	}

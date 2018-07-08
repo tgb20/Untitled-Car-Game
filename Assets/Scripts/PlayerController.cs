@@ -16,11 +16,11 @@ public class PlayerController : MonoBehaviour {
     float horizontalSpeed;
     float verticalSpeed;
 
-    public Vector3 GrowPowerUpSize;
-
     public GameMaster game;
 
     public bool isImmune = false;
+
+    public bool isFast = false;
 
 
 
@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour {
         horizontalSpeed = Input.GetAxis("Horizontal");
         verticalSpeed = Input.GetAxis("Vertical");
 
-
 	}
 
 	private void OnCollisionEnter(Collision collision)
@@ -50,15 +49,7 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    public IEnumerator GrowPowerUp(float secondsActive)
-    {
-        Vector3 originalSize = transform.localScale;
-        transform.localScale = GrowPowerUpSize;
-        isImmune = true;
-        yield return new WaitForSeconds(secondsActive);
-        transform.localScale = originalSize;
-        isImmune = false;
-    }
+   
 
     private void FixedUpdate()
 	{

@@ -6,6 +6,10 @@ public class GrowPowerUp : MonoBehaviour {
 
     GameMaster game;
 
+    GameObject player;
+
+    public Vector3 GrowPowerUpSize;
+
     public int value;
 
     public float secondsActive;
@@ -15,17 +19,28 @@ public class GrowPowerUp : MonoBehaviour {
     private void Start()
     {
         game = GameObject.FindGameObjectWithTag("Gamemaster").GetComponent<GameMaster>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && player.GetComponent<PlayerController>().isImmune == false)
         {
             game.score += value;
-            var player = collision.gameObject.GetComponent<PlayerController>();//scriptname
-            player.StartCoroutine("GrowPowerUp", secondsActive);
-            Destroy(gameObject);
+            StartCoroutine("Grow", secondsActive);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
         }
+    }
+    public IEnumerator Grow()
+    {
+        var originalSize = player.transform.localScale;
+        player.transform.localScale = GrowPowerUpSize;
+        player.GetComponent<PlayerController>().isImmune = true;
+        yield return new WaitForSeconds(secondsActive);
+        player.transform.localScale = originalSize;
+        player.GetComponent<PlayerController>().isImmune = false;
+        Destroy(gameObject);
     }
 
     private void Update()
