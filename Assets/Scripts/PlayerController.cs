@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,11 @@ public class PlayerController : MonoBehaviour {
     float horizontalSpeed;
     float verticalSpeed;
 
+    public Vector3 GrowPowerUpSize;
+
     public GameMaster game;
+
+    public bool isImmune = false;
 
 
 
@@ -38,15 +43,24 @@ public class PlayerController : MonoBehaviour {
 	{
         if (collision.collider.tag == "Car")
         {
-            if (collision.gameObject.GetComponent<CarController>().isRunning) {
+            if (collision.gameObject.GetComponent<CarController>().isRunning && !isImmune) {
                 game.gameOver = true;
                 Destroy(gameObject);
             }
         }
 	}
 
+    public IEnumerator GrowPowerUp(float secondsActive)
+    {
+        Vector3 originalSize = transform.localScale;
+        transform.localScale = GrowPowerUpSize;
+        isImmune = true;
+        yield return new WaitForSeconds(secondsActive);
+        transform.localScale = originalSize;
+        isImmune = false;
+    }
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
 
         Vector3 movementVector = new Vector3(horizontalSpeed, 0, verticalSpeed);
