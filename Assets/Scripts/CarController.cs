@@ -61,6 +61,7 @@ public class CarController : MonoBehaviour {
 
         headL.enabled = false;
         headR.enabled = false;
+        GetComponent<AudioSource>().enabled = false;
 
         Invoke("destroyCar", disappearTimer);
 
