@@ -1693,19 +1693,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114469356295949804, guid: 68e7790ecfe854fefae6abdd3df596a1,
-        type: 2}
-      propertyPath: game
-      value: 
-      objectReference: {fileID: 221577711}
-    - target: {fileID: 1573560203183034, guid: 68e7790ecfe854fefae6abdd3df596a1, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 4557553747237890, guid: 68e7790ecfe854fefae6abdd3df596a1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 114469356295949804, guid: 68e7790ecfe854fefae6abdd3df596a1,
-        type: 2}
-      propertyPath: isImmune
-      value: 0
+    - target: {fileID: 4557553747237890, guid: 68e7790ecfe854fefae6abdd3df596a1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557553747237890, guid: 68e7790ecfe854fefae6abdd3df596a1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68e7790ecfe854fefae6abdd3df596a1, type: 2}

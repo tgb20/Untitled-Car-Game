@@ -16,17 +16,23 @@ public class PlayerController : MonoBehaviour {
     float horizontalSpeed;
     float verticalSpeed;
 
-    public GameMaster game;
+    GameMaster game;
 
     public bool isImmune = false;
 
     public bool isFast = false;
+
+    Animator anim;
+
+    public Transform model;
 
 
 
 	private void Start()
 	{
         rigi = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
+        game = GameObject.FindGameObjectWithTag("Gamemaster").GetComponent<GameMaster>();
 	}
 
 
@@ -60,6 +66,14 @@ public class PlayerController : MonoBehaviour {
         movementVector *= speed;
 
         var velocity = rigi.velocity;
+
+        anim.SetFloat("speed", velocity.magnitude);
+        anim.SetBool("grounded", grounded);
+
+        Vector3 facingVector = new Vector3(velocity.x, 0, velocity.z);
+
+        model.rotation = Quaternion.LookRotation(facingVector) * Quaternion.Euler(0, 90, 0);
+
         var velocityChange = (movementVector - velocity);
         velocityChange.x = Mathf.Clamp(velocityChange.x, -maxSpeed, maxSpeed);
         velocityChange.z = Mathf.Clamp(velocityChange.z, -maxSpeed, maxSpeed);
